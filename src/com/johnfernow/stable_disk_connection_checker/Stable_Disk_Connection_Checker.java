@@ -128,6 +128,7 @@ public class Stable_Disk_Connection_Checker {
 				BufferedWriter writer = new BufferedWriter(new FileWriter(selectedDrive + File.separator + "temp-testing.txt"));
 			    writer.write(fileContent);
 			    writer.close();
+			    Thread.sleep(5000);
 			}
 			catch(Exception e) {
 				JOptionPane.showMessageDialog(null, "ERROR: lost connection to " + selectedDrive + ". The connection does not appear to be stable.");

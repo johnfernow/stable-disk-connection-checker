@@ -20,6 +20,9 @@ import javax.swing.JButton;
 
 import java.nio.file.FileStore;
 import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -138,6 +141,20 @@ public class Stable_Disk_Connection_Checker {
 		}
 		if (testSuccessful) {
 			JOptionPane.showMessageDialog(null, "Drive " + selectedDrive + " passed the stability test for " + selectedLength);
+			try {
+				// delete temporary testing file
+				Path path = Paths.get(selectedDrive + File.separator + "temp-testing.txt"); 
+				try { 
+					Files.deleteIfExists(path); 
+				} 
+				catch (IOException e) { 
+					// TODO Auto-generated catch block 
+					e.printStackTrace(); 
+				}   
+			}
+			catch(Exception e) {
+				JOptionPane.showMessageDialog(null, "ERROR: lost connection to " + selectedDrive + ". The connection does not appear to be stable.");
+			}
 		}
 	}
 	
